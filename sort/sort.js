@@ -1,7 +1,11 @@
 window.addEventListener('load',onLoadHandler,false);
 function onLoadHandler (argument) {
+	// sortTest();
 
-	
+	unitTest();
+
+}
+function sortTest(){
 	var samples = genRandArr(500,1,100);
 	var m = new MergeSort();
 	var b = new BubbleSort();
@@ -16,6 +20,7 @@ function onLoadHandler (argument) {
 	CompareSortAlg(50,2000);
 
 }
+
 function getCanvas(){
 	var canvas = document.getElementById('canvas');
 	var ctx = canvas.getContext('2d');
@@ -255,4 +260,29 @@ function CompareSortAlg(times,N){
 	}
 	console.log('algorithm1:'+time1+'秒');
 	console.log('algorithm2:'+time2+'秒');
+}
+
+function shuffle(arr){
+	var len = arr.length;
+	// var N = len*2;
+	for(var i=len-1; i>=0; i--){
+		var temp;
+		var randIndex = Math.floor(i*Math.random());
+		temp = arr[i];
+		arr[i] = arr[randIndex];
+		arr[randIndex] = temp;
+
+	}
+
+}
+
+function unitTest(){
+	var arr = genRandArr(300,0,9999).sort(compare);
+	// console.log(arr);
+	var c = new Draw(getCanvas(),1000,600);
+	// c.plot_arr(arr);
+	shuffle(arr);
+	c.plot_arr(arr);
+
+
 }
