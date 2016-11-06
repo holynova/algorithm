@@ -450,5 +450,9 @@ function QuickSort()
 		}
 
 	};
+	QuickSort.prototype.quickSort2 = function(arr){
+		QuickSort.prototype.shuffle(arr);
+		
+	}
 
 }
