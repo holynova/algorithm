@@ -39,13 +39,14 @@ const change = (sum = 0, coins = []) => {
 }
 
 function test() {
-  let res = change(100, [3, 5, 7, 8, 9, 10, 11])
+  let res = change(55, [3, 5, 7, 8, 9, 10, 11])
   // console.log(res)
   let lengthList = res.map(s => s.length)
-  console.log(Math.min(...lengthList))
   for (let s of res) {
     console.log({ len: s.length, list: s })
   }
+  console.log(Math.min(...lengthList))
+  console.log(Math.max(...lengthList))
 }
 function main() {
   test()
