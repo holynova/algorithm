@@ -25,13 +25,14 @@ const findMaxGold = (mineGoldList = [], mineWorkerNeedList = [], workerTotal = 0
   const findWithDetail = (mine = 0, worker = 0, people = []) => {
     log(`mine = ${mine}, worker = ${worker}`)
 
-    if (mine === 0 || worker <= 0) {
-      // log(`mine===0`, people)
-      return {
-        gold: 0,
-        people,
-      }
-    } else if (mine === 1) {
+    // if (mine === 0 || worker <= 0) {
+    //   // log(`mine===0`, people)
+    //   return {
+    //     gold: 0,
+    //     people,
+    //   }
+    // } else 
+    if (mine === 1) {
       log(`   mine===1`, { worker, need: mineWorkerNeedList[0] })
       if (worker < mineWorkerNeedList[0]) {
         log('not enough')
