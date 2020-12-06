@@ -1,3 +1,9 @@
+// class Finder(){
+//     constructor(){
+
+//     }
+// }
+
 
 function format(num) {
     if (typeof num === 'number') {
@@ -39,12 +45,13 @@ function isEqual(a, b, threshould = 1e-6) {
 }
 
 let finalResults = []
+
 function dealWithTwo(oa, ob, isFinal = false) {
     let { result: a, formula: fa } = format(oa)
     let { result: b, formula: fb } = format(ob)
     let results = [
         { result: a + b, formula: `(${fa} + ${fb})` },
-        { result: a - b, formula: `(${fa} + ${fb})` },
+        { result: a - b, formula: `(${fa} - ${fb})` },
         { result: -a + b, formula: `(${fb} - ${fa})` },
         { result: a * b, formula: `(${fa} * ${fb})` },
     ]
@@ -55,7 +62,11 @@ function dealWithTwo(oa, ob, isFinal = false) {
         results.push({ result: a / b, formula: `(${fa} / ${fb})` })
     }
     if (isFinal) {
+
         let finals = results.filter(o => isEqual(24, o.result))
+        if (finals.length > 0) {
+            log(finals)
+        }
         finalResults = [...finalResults, ...finals]
         return finals
     }
@@ -108,14 +119,12 @@ function test() {
 
     // log(splitArr(input))
     let inputs = [
-        '1 2 3 4',
-        '4 4 10 10',
-        '10 10 4 4',
-        '3 8 3 8',
-        '5 5 1 5'
+        // '1 2 3 4',
+        '10 10 4 4 13 7 22 21',
+        // '3 8 3 8',
+        // '5 5 1 5'
     ]
     for (let str of inputs) {
-
         let input = str.split(' ').map(s => parseInt(s, 10))
         // log(input)
         finalResults = []
@@ -125,12 +134,27 @@ function test() {
             log(`${str}:无解`)
         } else {
             log(str)
-            log(removeRepeat(finalResults))
+            let cleanResults = removeRepeat(finalResults)
+            for (let r of cleanResults) {
+                let v = eval(r)
+                if (isEqual(24, v)) {
+                    // log(`pass:${r}`)
+                    log(`pass:${v} = ${r} `)
+                } else {
+                    log(`fail:${v} = ${r} `)
+                }
+            }
         }
     }
+}
+function unitTest() {
+    let a = 24
+    let b = 26
+    log(`${a},${b},${isEqual(a, b)}`)
 }
 
 if (debugMode) {
     test()
+    // unitTest()
 }
 
